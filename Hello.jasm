@@ -12,7 +12,7 @@ public super class Hello version 65:0
     stack 2  locals 1
   {
          getstatic         Field java/lang/System.out:"Ljava/io/PrintStream;";
-         ldc               String "\033c\033[47;31m\nHello World!";
+         ldc               String "\u001bc\u001b[47;31m\nHello World!";
          invokevirtual     Method java/io/PrintStream.println:"(Ljava/lang/String;)V";
          return;
   }
