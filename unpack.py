@@ -2,6 +2,7 @@ import os
 import tkinter as tk
 from PIL import Image, ImageTk
 import copy
+import zlib
 
 #----------------------------------------
 
@@ -84,7 +85,6 @@ class VideoPlayer:
 
 
 
-
 print("\033c\033[47;30m\ngive me the .video pack file ? \n")
 a=input().strip()
 f1=open(a,"rb")
@@ -113,7 +113,7 @@ for d in ff:
         ff1=d.split(b"\x01\x00\x05\x04\x03\x02")
         ff1[0]=ff1[0].decode()  
         f1=open(names+"/"+ff1[0],"bw")
-        f1.write(ff1[1])
+        f1.write(zlib.decompress(ff1[1]))
         f1.close()
     counter=counter+1
 
