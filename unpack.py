@@ -14,7 +14,7 @@ class VideoPlayer:
         self.root = root
         self.directory = directory
 
-        self.root.title("JABA Video Player")
+        self.root.title(directory+" Video Player")
         self.root.geometry("800x600")
         self.root.configure(bg="black")
 
@@ -72,9 +72,10 @@ class VideoPlayer:
 
 
 print("\033c\033[47;30m\ngive me the .video pack file ? \n")
-#a=input().strip()
+
 a=filedialog.askopenfile(title="give me the .video pack file ?",defaultextension="*.video")
-f1=open(a.name,"rb")
+a=a.name
+f1=open(a,"rb")
 f=f1.read()
 f1.close()
 ff=f.split(b"\x01\x00\x05\x04\x03\x07")
@@ -86,13 +87,7 @@ if len(ff1)< 2:
     if ff1[1]!="JABA":
         printf("this is not a pack file to 1 file")
         exit(1)
-names="/tmp/"+ff1[1].decode()
-
-try:
-    os.mkdir(names,777)
-except:
-    pass
-os.system("chmod 777 "+names)
+directory=ff1[1].decode()
 
 counter=0
 images=[]
@@ -115,7 +110,6 @@ counter=0
 
 
 # directoria onde ficaram os bitmaps
-directory=names
 
 root=tk.Tk()
 
